@@ -106,7 +106,7 @@ namespace AdminEmpleadosFront
             if (res == DialogResult.No)
             {
                 return;
-            }           
+            }
 
             try
             {
@@ -121,5 +121,12 @@ namespace AdminEmpleadosFront
 
             buscarEmpleados();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+   
     }
 }

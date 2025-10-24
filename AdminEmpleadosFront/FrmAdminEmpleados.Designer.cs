@@ -46,6 +46,8 @@
             btnModificar = new Button();
             btnBaja = new Button();
             btnCerrar = new Button();
+            btnBorrarAnulados = new Button();
+            chkVerAnulados = new CheckBox();
             panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)empleadoBindingSource).BeginInit();
@@ -146,6 +148,8 @@
             flowLayoutPanel1.Controls.Add(btnModificar);
             flowLayoutPanel1.Controls.Add(btnBaja);
             flowLayoutPanel1.Controls.Add(btnCerrar);
+            flowLayoutPanel1.Controls.Add(btnBorrarAnulados);
+            flowLayoutPanel1.Controls.Add(chkVerAnulados);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -201,9 +205,30 @@
             btnCerrar.Text = "Salir";
             btnCerrar.UseVisualStyleBackColor = true;
             btnCerrar.Click += btnCerrar_Click;
-            // 
+            //
+            // btnBorrarAnulados
+            //
+            btnBorrarAnulados.Location = new Point(3, 267);
+            btnBorrarAnulados.Name = "btnBorrarAnulados";
+            btnBorrarAnulados.Size = new Size(99, 38);
+            btnBorrarAnulados.TabIndex = 6;
+            btnBorrarAnulados.Text = "Borrar anulados";
+            btnBorrarAnulados.UseVisualStyleBackColor = true;
+            btnBorrarAnulados.Click += btnBorrarAnulados_Click;
+            //
+            // chkVerAnulados
+            //
+            chkVerAnulados.AutoSize = true;
+            chkVerAnulados.Location = new Point(3, 311);
+            chkVerAnulados.Name = "chkVerAnulados";
+            chkVerAnulados.Size = new Size(96, 19);
+            chkVerAnulados.TabIndex = 7;
+            chkVerAnulados.Text = "Ver anulados";
+            chkVerAnulados.UseVisualStyleBackColor = true;
+            chkVerAnulados.CheckedChanged += chkVerAnulados_CheckedChanged;
+            //
             // panel1
-            // 
+            //
             panel1.Controls.Add(txtBuscar);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(108, 0);
@@ -241,6 +266,8 @@
         private Button btnCerrar;
         private Panel panel1;
         private Button btnBuscar;
+        private Button btnBorrarAnulados;
+        private CheckBox chkVerAnulados;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn Dni;
         private DataGridViewTextBoxColumn Nombre;

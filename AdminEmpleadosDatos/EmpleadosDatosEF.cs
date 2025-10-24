@@ -11,7 +11,7 @@ namespace AdminEmpleadosDatos
 
         public static List<Empleado> Get(Empleado e)
         {
-            empleadosContext = new AdminEmpleadosDBContext();            
+            empleadosContext = new AdminEmpleadosDBContext();
 
             if (empleadosContext.empleado == null)
             {
@@ -23,7 +23,10 @@ namespace AdminEmpleadosDatos
             List<Empleado> list;
             if (String.IsNullOrWhiteSpace(e.Nombre) && String.IsNullOrWhiteSpace(e.Dni))
             {
-                list = empleadosContext.empleado.Include("Departamento").Where(e=>e.anulado == false).ToList();
+                list = empleadosContext.empleado.Include("Departamento")
+                    //LINQ: la expresion lambda emp => emp.anulado == e.anulado compara el campo anulado de cada empleado con el valor que llega del checkbox
+                    .Where(emp => emp.anulado == e.anulado)
+                    .ToList();
             }
             else
             {
@@ -39,13 +42,17 @@ namespace AdminEmpleadosDatos
 
                 //? operador ternario (es como un IF-ELSE) 
                 //?? operador de fusion de null (Asigna un valor cuando es NULL la variable de la izquierda)                
+                //LINQ: la lambda i => evalua cada registro para filtrar por nombre o DNI segun el texto ingresado
                 list = empleadosContext.empleado.Include("Departamento").Where(i =>
                     (i.Nombre != null ? i.Nombre.Contains(e.Nombre ?? "") : true)
                     ||
                     (i.Dni != null ? i.Dni.Contains(e.Dni ?? "") : true)
-                    ).Where(e=>e.anulado == false).ToList();
+                    )
+                    //LINQ: la segunda lambda emp => emp.anulado == e.anulado vuelve a filtrar por el estado anulado elegido por el usuario
+                    .Where(emp => emp.anulado == e.anulado)
+                    .ToList();
             }
-            
+
 
             return list;
         }
@@ -74,6 +81,7 @@ namespace AdminEmpleadosDatos
         {
             empleadosContext = new AdminEmpleadosDBContext();
 
+            //LINQ: la lambda c => c.EmpleadoId == e.EmpleadoId busca el primer registro cuyo ID coincide con el que se quiere modificar
             var empleadoBD = empleadosContext.empleado.FirstOrDefault(c => c.EmpleadoId == e.EmpleadoId);
             if (empleadoBD == null)
                 return false;
@@ -95,6 +103,7 @@ namespace AdminEmpleadosDatos
         {
             empleadosContext = new AdminEmpleadosDBContext();
 
+            //LINQ: la lambda c => c.EmpleadoId == id localiza el empleado a anular comparando los IDs
             var empleadoBD = empleadosContext.empleado.FirstOrDefault(c => c.EmpleadoId == id);
             if (empleadoBD == null)
                 return false;
@@ -104,6 +113,38 @@ namespace AdminEmpleadosDatos
             empleadosContext.SaveChanges();
 
             return true;
+        }
+
+        public static int DeleteAnulados()
+        {
+            empleadosContext = new AdminEmpleadosDBContext();
+
+            if (empleadosContext.empleado == null)
+            {
+                //devuelvo cero porque no hay tabla para consultar (por ejemplo en una BD sin migraciones)
+                return 0;
+            }
+
+            //busco todos los empleados marcados como anulados y los guardo en la lista solicitada
+            List<Empleado> listaParaDeletear = empleadosContext.empleado
+                //LINQ: la lambda emp => emp.anulado devuelve solo los empleados cuyo campo anulado es verdadero
+                .Where(emp => emp.anulado)
+                .ToList();
+
+            if (listaParaDeletear.Count == 0)
+            {
+                //si la lista esta vacia no hay nada para borrar, retorno cero
+                return 0;
+            }
+
+            //elimino todos los empleados anulados usando RemoveRange como pidio el requerimiento
+            empleadosContext.empleado.RemoveRange(listaParaDeletear);
+
+            //persisto los cambios en la base de datos
+            empleadosContext.SaveChanges();
+
+            //retorno la cantidad de registros eliminados para informar al usuario
+            return listaParaDeletear.Count;
         }
     }
 }

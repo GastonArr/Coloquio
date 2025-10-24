@@ -11,7 +11,7 @@ namespace AdminEmpleadosDatos
 
         public static List<Empleado> Get(Empleado e)
         {
-            empleadosContext = new AdminEmpleadosDBContext();            
+            empleadosContext = new AdminEmpleadosDBContext();
 
             if (empleadosContext.empleado == null)
             {
@@ -23,7 +23,10 @@ namespace AdminEmpleadosDatos
             List<Empleado> list;
             if (String.IsNullOrWhiteSpace(e.Nombre) && String.IsNullOrWhiteSpace(e.Dni))
             {
-                list = empleadosContext.empleado.Include("Departamento").Where(e=>e.anulado == false).ToList();
+                list = empleadosContext.empleado.Include("Departamento")
+                    //filtra segun el valor del parametro anulado enviado desde la capa de presentacion
+                    .Where(emp => emp.anulado == e.anulado)
+                    .ToList();
             }
             else
             {
@@ -43,9 +46,12 @@ namespace AdminEmpleadosDatos
                     (i.Nombre != null ? i.Nombre.Contains(e.Nombre ?? "") : true)
                     ||
                     (i.Dni != null ? i.Dni.Contains(e.Dni ?? "") : true)
-                    ).Where(e=>e.anulado == false).ToList();
+                    )
+                    //aplico nuevamente el filtro por anulados cuando el usuario esta buscando por nombre o dni
+                    .Where(emp => emp.anulado == e.anulado)
+                    .ToList();
             }
-            
+
 
             return list;
         }
@@ -104,6 +110,37 @@ namespace AdminEmpleadosDatos
             empleadosContext.SaveChanges();
 
             return true;
+        }
+
+        public static int DeleteAnulados()
+        {
+            empleadosContext = new AdminEmpleadosDBContext();
+
+            if (empleadosContext.empleado == null)
+            {
+                //devuelvo cero porque no hay tabla para consultar (por ejemplo en una BD sin migraciones)
+                return 0;
+            }
+
+            //busco todos los empleados marcados como anulados y los guardo en la lista solicitada
+            List<Empleado> listaParaDeletear = empleadosContext.empleado
+                .Where(emp => emp.anulado)
+                .ToList();
+
+            if (listaParaDeletear.Count == 0)
+            {
+                //si la lista esta vacia no hay nada para borrar, retorno cero
+                return 0;
+            }
+
+            //elimino todos los empleados anulados usando RemoveRange como pidio el requerimiento
+            empleadosContext.empleado.RemoveRange(listaParaDeletear);
+
+            //persisto los cambios en la base de datos
+            empleadosContext.SaveChanges();
+
+            //retorno la cantidad de registros eliminados para informar al usuario
+            return listaParaDeletear.Count;
         }
     }
 }

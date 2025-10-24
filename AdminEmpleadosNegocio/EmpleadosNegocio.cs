@@ -6,8 +6,21 @@ namespace AdminEmpleadosNegocio
     public class EmpleadosNegocio
     {
         public static List<Empleado> Get(Empleado e)
-        {            
+        {
             return EmpleadosDatosEF.Get(e);
+        }
+
+        public static int DeleteAnulados()
+        {
+            try
+            {
+                //delegamos la eliminacion definitiva a la capa de datos y devolvemos la cantidad borrada
+                return EmpleadosDatosEF.DeleteAnulados();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public static int Insert(Empleado e)

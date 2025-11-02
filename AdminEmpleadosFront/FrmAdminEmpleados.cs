@@ -3,7 +3,7 @@ using AdminEmpleadosNegocio;
 
 namespace AdminEmpleadosFront
 {
-    public partial class FrmAdminEmpleados : Form
+    public partial class FrmAdminEmpleados : Form  // herencia, es que la clase hereda de formulario
     {
         List<Empleado> empleadosList = new List<Empleado>();
 
@@ -57,12 +57,12 @@ namespace AdminEmpleadosFront
             }
         }
 
-        private void btnAlta_Click(object sender, EventArgs e)
+        private void btnAlta_Click(object sender, EventArgs e) // evento alta
         {
-            FrmEditEmpleados frm = new FrmEditEmpleados();
-
-            frm.modo = EnumModoForm.Alta;
-            frm.ShowDialog();//modal
+            FrmEditEmpleados frm = new FrmEditEmpleados(); // se llama al otro formulario instanciando osea declarando una variable en el otro form
+            // se inicia en el contructor porque aca estoy instanciando a la clase (creando un objeto), osea llamando a dicha clase
+            frm.modo = EnumModoForm.Alta; // le asigno el modo ALTA
+            frm.ShowDialog();//modal para no perder el foco Y se va directamente al formulario de edicion de empleado (constructor) para mostrarlo
 
             buscarEmpleados();
         }
@@ -84,15 +84,15 @@ namespace AdminEmpleadosFront
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            if (empleadoBindingSource.Current == null)
+            if (empleadoBindingSource.Current == null) //si no tomo algunelemento relacionado a la grilla me retorna
                 return;
 
-            FrmEditEmpleados frm = new FrmEditEmpleados();
+            FrmEditEmpleados frm = new FrmEditEmpleados(); // declaro el formulario de edicion de empleado
 
-            frm.modo = EnumModoForm.Consulta;
-            frm._empleado = (Empleado)empleadoBindingSource.Current;
+            frm.modo = EnumModoForm.Consulta; // le seteo el modo con la enumeracion en este caso es consulta
+            frm._empleado = (Empleado)empleadoBindingSource.Current; // traigo el elemento relacionado en la grilla
 
-            frm.ShowDialog();
+            frm.ShowDialog(); // lo muestro para que sea modal (no pierda el foco)
 
             buscarEmpleados();
         }
@@ -102,10 +102,10 @@ namespace AdminEmpleadosFront
             if (empleadoBindingSource.Current == null)
                 return;
 
-            Empleado emp = (Empleado)empleadoBindingSource.Current;
-
+            Empleado emp = (Empleado)empleadoBindingSource.Current; // tomo el empleado seleccionado en la grilla con la propiedad .Current que devulve todo el objeto seleccionado
+            // y lo guardo en la propiedad emp, todo lo que me devolvio la grilla
             //pregunto si quiere guardar los datos
-            DialogResult res = MessageBox.Show("¿Confirma anular el empleado " + emp.Nombre + " ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("¿Confirma anular el empleado " + emp.Nombre + " ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);// muestro el mensaje
             if (res == DialogResult.No)
             {
                 return;
@@ -113,7 +113,7 @@ namespace AdminEmpleadosFront
 
             try
             {
-                EmpleadosNegocio.Anular((int)emp.EmpleadoId);
+                EmpleadosNegocio.Anular((int)emp.EmpleadoId); // llamo a este metodo y le mando el ID
                 MessageBox.Show("El empleado " + emp.Nombre + " se anuló correctamente", "Anulación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -172,6 +172,9 @@ namespace AdminEmpleadosFront
             buscarEmpleados();
         }
 
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

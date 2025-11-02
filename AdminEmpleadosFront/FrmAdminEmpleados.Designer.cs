@@ -68,6 +68,7 @@
             dataGridView1.Location = new Point(108, 28);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(837, 460);
             dataGridView1.TabIndex = 0;
             // 
@@ -75,50 +76,64 @@
             // 
             id.DataPropertyName = "EmpleadoId";
             id.HeaderText = "id";
+            id.MinimumWidth = 8;
             id.Name = "id";
             id.ReadOnly = true;
+            id.Width = 150;
             // 
             // Dni
             // 
             Dni.DataPropertyName = "Dni";
             Dni.HeaderText = "Dni";
+            Dni.MinimumWidth = 8;
             Dni.Name = "Dni";
             Dni.ReadOnly = true;
+            Dni.Width = 150;
             // 
             // Nombre
             // 
             Nombre.DataPropertyName = "Nombre";
             Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 8;
             Nombre.Name = "Nombre";
             Nombre.ReadOnly = true;
+            Nombre.Width = 150;
             // 
             // Direccion
             // 
             Direccion.DataPropertyName = "Direccion";
             Direccion.HeaderText = "Direccion";
+            Direccion.MinimumWidth = 8;
             Direccion.Name = "Direccion";
             Direccion.ReadOnly = true;
+            Direccion.Width = 150;
             // 
             // FechaIngreso
             // 
             FechaIngreso.DataPropertyName = "FechaIngreso";
             FechaIngreso.HeaderText = "FechaIngreso";
+            FechaIngreso.MinimumWidth = 8;
             FechaIngreso.Name = "FechaIngreso";
             FechaIngreso.ReadOnly = true;
+            FechaIngreso.Width = 150;
             // 
             // Salario
             // 
             Salario.DataPropertyName = "Salario";
             Salario.HeaderText = "Salario";
+            Salario.MinimumWidth = 8;
             Salario.Name = "Salario";
             Salario.ReadOnly = true;
+            Salario.Width = 150;
             // 
             // NombreDepartamento
             // 
             NombreDepartamento.DataPropertyName = "NombreDepartamento";
             NombreDepartamento.HeaderText = "NombreDepartamento";
+            NombreDepartamento.MinimumWidth = 8;
             NombreDepartamento.Name = "NombreDepartamento";
             NombreDepartamento.ReadOnly = true;
+            NombreDepartamento.Width = 150;
             // 
             // txtBuscar
             // 
@@ -128,6 +143,7 @@
             txtBuscar.PlaceholderText = "Buscar";
             txtBuscar.Size = new Size(837, 23);
             txtBuscar.TabIndex = 2;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             txtBuscar.KeyPress += txtBuscar_KeyPress;
             // 
             // btnAlta
@@ -205,9 +221,9 @@
             btnCerrar.Text = "Salir";
             btnCerrar.UseVisualStyleBackColor = true;
             btnCerrar.Click += btnCerrar_Click;
-            //
+            // 
             // btnBorrarAnulados
-            //
+            // 
             btnBorrarAnulados.Location = new Point(3, 267);
             btnBorrarAnulados.Name = "btnBorrarAnulados";
             btnBorrarAnulados.Size = new Size(99, 38);
@@ -215,20 +231,20 @@
             btnBorrarAnulados.Text = "Borrar anulados";
             btnBorrarAnulados.UseVisualStyleBackColor = true;
             btnBorrarAnulados.Click += btnBorrarAnulados_Click;
-            //
+            // 
             // chkVerAnulados
-            //
+            // 
             chkVerAnulados.AutoSize = true;
             chkVerAnulados.Location = new Point(3, 311);
             chkVerAnulados.Name = "chkVerAnulados";
-            chkVerAnulados.Size = new Size(96, 19);
+            chkVerAnulados.Size = new Size(93, 19);
             chkVerAnulados.TabIndex = 7;
             chkVerAnulados.Text = "Ver anulados";
             chkVerAnulados.UseVisualStyleBackColor = true;
             chkVerAnulados.CheckedChanged += chkVerAnulados_CheckedChanged;
-            //
+            // 
             // panel1
-            //
+            // 
             panel1.Controls.Add(txtBuscar);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(108, 0);
@@ -249,6 +265,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)empleadoBindingSource).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

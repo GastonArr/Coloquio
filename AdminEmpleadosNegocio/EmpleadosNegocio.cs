@@ -3,7 +3,7 @@ using AdminEmpleadosEntidades;
 
 namespace AdminEmpleadosNegocio
 {
-    public class EmpleadosNegocio
+    public class EmpleadosNegocio // Esta clase no tiene propiedades, solo tiene comportamientos
     {
         public static List<Empleado> Get(Empleado e)
         {
@@ -23,11 +23,11 @@ namespace AdminEmpleadosNegocio
             }
         }
 
-        public static int Insert(Empleado e)
-        {
-            if (String.IsNullOrEmpty(e.Nombre))
+        public static int Insert(Empleado e) // en el insert me trae aca
+        { // con sus validaciones
+            if (String.IsNullOrEmpty(e.Nombre)) // que el nombre no este vacio 
             {
-                return 0;
+                return 0; // si esta vacio retorno un 0 y asi con todo
             }
             if (String.IsNullOrEmpty(e.Dni))
             {
@@ -40,7 +40,7 @@ namespace AdminEmpleadosNegocio
 
             try
             {
-                return EmpleadosDatosEF.Insert(e);                
+                return EmpleadosDatosEF.Insert(e); //si va todo bien llamo a la capa de datos con el objeto que recibi (e)       
             }
             catch (Exception)
             {
@@ -49,7 +49,7 @@ namespace AdminEmpleadosNegocio
 
         }
 
-        public static bool Update(Empleado e)
+        public static bool Update(Empleado e) // para hacer una validaciones osea REGLAS DE NEGOCIO 
         {
             if (String.IsNullOrEmpty(e.Nombre))
             {
@@ -64,9 +64,9 @@ namespace AdminEmpleadosNegocio
                 e.FechaIngreso = DateTime.Now;
             }
 
-            try
+            try    // Si todo esta bien llamo a los datos
             {
-                return EmpleadosDatosEF.Update(e);             
+                return EmpleadosDatosEF.Update(e); // lamo a la capa de datos        
             }
             catch (Exception)
             {
@@ -74,11 +74,11 @@ namespace AdminEmpleadosNegocio
             }
         }
 
-        public static bool Anular(int id)
+        public static bool Anular(int id) // aca puedo hacer algunas validaciones pero no hay nada
         {
             try
             {
-                return EmpleadosDatosEF.Anular(id);
+                return EmpleadosDatosEF.Anular(id); // llamo la capa de datos
             }
             catch (Exception)
             {

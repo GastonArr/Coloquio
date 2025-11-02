@@ -9,16 +9,16 @@ namespace AdminEmpleadosDatos
 
         public static List<Departamento> Get()
         {
-            empleadosContext = new AdminEmpleadosDBContext();
+            empleadosContext = new AdminEmpleadosDBContext(); // creo el contexto
 
             if (empleadosContext.departamento == null)
             {
                 return new List<Departamento>();
             }
             
-            List<Departamento> list = empleadosContext.departamento.ToList();
+            List<Departamento> list = empleadosContext.departamento.ToList();// devuelvo la lista
 
-            return list;
+            return list; // vuelvo hasta el front
         }
     }
 }

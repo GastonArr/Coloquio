@@ -7,11 +7,11 @@ namespace AdminEmpleadosFront
 {
     public partial class FrmEditEmpleados : Form
     {
-        public EnumModoForm modo = EnumModoForm.Alta;
+        public EnumModoForm modo = EnumModoForm.Alta;  // utilizo enumeraciones f12 entramos
 
         public Empleado _empleado = new Empleado();
 
-        public FrmEditEmpleados()
+        public FrmEditEmpleados()//CONSTRUCTOR: porque no devuelve nada (void / String) y se llama igual que la clase - se ejecuata apenas hago el new
         {
             InitializeComponent();
         }
@@ -22,8 +22,8 @@ namespace AdminEmpleadosFront
 
             if (modo == EnumModoForm.Alta)
             {
-                LimpiarControles();
-                HabilitarControles(true);
+                LimpiarControles(); // llamo al metodo limpiar
+                HabilitarControles(true);//llamo al metodo habilitar controles y es un true osea los habilitos
             }
             if (modo == EnumModoForm.Modificacion)
             {
@@ -32,15 +32,15 @@ namespace AdminEmpleadosFront
             }
             if (modo == EnumModoForm.Consulta)
             {
-                HabilitarControles(false);
-                CargarDatos();
+                HabilitarControles(false); // llamo al metodo habilitar controles para desabilitarlos por eso es un false
+                CargarDatos(); //cargo los datos
                 btnAceptar.Enabled = false;
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e) // cuando acepto en el modificar de editar empleado con todos los campos con los nuevos valores
         {
-            Guardar();
+            Guardar(); // llamo al guardar
 
         }
 
@@ -48,17 +48,17 @@ namespace AdminEmpleadosFront
         {
             try
             {
-                //cargo los datos ingresados en un objeto empleado
-                Empleado emp = new Empleado();
-                emp.Salario = txtSalario.Value;
-                emp.Direccion = txtDireccion.Text.Trim();
-                emp.Dni = txtDni.Text.Trim();
-                emp.FechaIngreso = txtIngreso.Value;
-                emp.Departamento = null;
-                emp.Nombre = txtNombre.Text.Trim();
+                //cargo (tomo) los datos del formulario ingresados, en un objeto empleado
+                Empleado emp = new Empleado(); // lo guardo en una variable objeto de tipo empleado creando este objeto new
+                emp.Salario = txtSalario.Value; // le asigno todo lo que viene de los controloes
+                emp.Direccion = txtDireccion.Text.Trim();// le asigno todo lo que viene de los controloes
+                emp.Dni = txtDni.Text.Trim();// le asigno todo lo que viene de los controloes
+                emp.FechaIngreso = txtIngreso.Value;// le asigno todo lo que viene de los controloes
+                emp.Departamento = null;// le asigno todo lo que viene de los controloes
+                emp.Nombre = txtNombre.Text.Trim();// le asigno todo lo que viene de los controloes
                 emp.anulado = false;
 
-                //tomo el ID del departamento, el cual esta en el combo
+                //tomo el ID del departamento, el cual esta en el combo /// esto es para mostrar o mejor dicho guardar los departamentos 
                 emp.dpto_id = (int)cmbDepartamento.SelectedValue;
 
                 string mensajeErrores = "";
@@ -81,17 +81,17 @@ namespace AdminEmpleadosFront
 
                 //Guardo los datos
                 if (modo == EnumModoForm.Alta)
-                {
-                    int idEmp = EmpleadosNegocio.Insert(emp);
+                {// me muevo a la capa EmpleadoNegocio he le inserto todo
+                    int idEmp = EmpleadosNegocio.Insert(emp);  // finalmente llamo a la clase empleado negocio y al metodo INSERT (MET ESTATIC)
                     txtId.Text = idEmp.ToString();
                     MessageBox.Show("Se generó el empleado nro " + idEmp.ToString(), "Empleado creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 if (modo == EnumModoForm.Modificacion)
                 {
-                    emp.EmpleadoId = Convert.ToInt32(txtId.Text);
+                    emp.EmpleadoId = Convert.ToInt32(txtId.Text);// aca tomo el Id para modificarlo este ID viene de la grilla
 
-                    EmpleadosNegocio.Update(emp);
+                    EmpleadosNegocio.Update(emp); // llamamo a la capa de negocio
                     MessageBox.Show("Se actualizaron los datos correctamente", "Empleado actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
 
@@ -149,7 +149,7 @@ namespace AdminEmpleadosFront
             Close();
         }
 
-        private void HabilitarControles(bool habilitar)
+        private void HabilitarControles(bool habilitar) // recibe un buleano
         {
 
             txtSalario.Enabled = habilitar;
@@ -160,7 +160,7 @@ namespace AdminEmpleadosFront
             cmbDepartamento.Enabled = habilitar;
         }
 
-        private void CargarDatos()
+        private void CargarDatos() // cada control le asigno los datos que ya estan seleccionados previamente en la propiedad _empleado (bindinSource)
         {
             txtId.Text = _empleado.EmpleadoId.ToString();
             txtSalario.Value = Convert.ToDecimal(_empleado.Salario);
@@ -181,7 +181,7 @@ namespace AdminEmpleadosFront
         private void CargarComboDepartamento()
         {
             //envio por parametro un departamento sin datos, asi va sin filtro y trae todos los dptos            
-            departamentoBindingSource.DataSource = DepartamentosNegocio.Get();
+            departamentoBindingSource.DataSource = DepartamentosNegocio.Get(); // como el combo esta asociado al BindingSource se va a actualizar
         }
 
         private void txt_Validating(object sender, CancelEventArgs e)

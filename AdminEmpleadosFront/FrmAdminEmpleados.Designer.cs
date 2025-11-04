@@ -65,76 +65,95 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id, Dni, Nombre, Direccion, FechaIngreso, Salario, NombreDepartamento });
             dataGridView1.DataSource = empleadoBindingSource;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(108, 28);
+            dataGridView1.Location = new Point(154, 47);
+            dataGridView1.Margin = new Padding(4, 5, 4, 5);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(837, 460);
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(1196, 766);
             dataGridView1.TabIndex = 0;
             // 
             // id
             // 
             id.DataPropertyName = "EmpleadoId";
             id.HeaderText = "id";
+            id.MinimumWidth = 8;
             id.Name = "id";
             id.ReadOnly = true;
+            id.Width = 150;
             // 
             // Dni
             // 
             Dni.DataPropertyName = "Dni";
             Dni.HeaderText = "Dni";
+            Dni.MinimumWidth = 8;
             Dni.Name = "Dni";
             Dni.ReadOnly = true;
+            Dni.Width = 150;
             // 
             // Nombre
             // 
             Nombre.DataPropertyName = "Nombre";
             Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 8;
             Nombre.Name = "Nombre";
             Nombre.ReadOnly = true;
+            Nombre.Width = 150;
             // 
             // Direccion
             // 
             Direccion.DataPropertyName = "Direccion";
             Direccion.HeaderText = "Direccion";
+            Direccion.MinimumWidth = 8;
             Direccion.Name = "Direccion";
             Direccion.ReadOnly = true;
+            Direccion.Width = 150;
             // 
             // FechaIngreso
             // 
             FechaIngreso.DataPropertyName = "FechaIngreso";
             FechaIngreso.HeaderText = "FechaIngreso";
+            FechaIngreso.MinimumWidth = 8;
             FechaIngreso.Name = "FechaIngreso";
             FechaIngreso.ReadOnly = true;
+            FechaIngreso.Width = 150;
             // 
             // Salario
             // 
             Salario.DataPropertyName = "Salario";
             Salario.HeaderText = "Salario";
+            Salario.MinimumWidth = 8;
             Salario.Name = "Salario";
             Salario.ReadOnly = true;
+            Salario.Width = 150;
             // 
             // NombreDepartamento
             // 
             NombreDepartamento.DataPropertyName = "NombreDepartamento";
             NombreDepartamento.HeaderText = "NombreDepartamento";
+            NombreDepartamento.MinimumWidth = 8;
             NombreDepartamento.Name = "NombreDepartamento";
             NombreDepartamento.ReadOnly = true;
+            NombreDepartamento.Width = 150;
             // 
             // txtBuscar
             // 
             txtBuscar.Dock = DockStyle.Fill;
             txtBuscar.Location = new Point(0, 0);
+            txtBuscar.Margin = new Padding(4, 5, 4, 5);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.PlaceholderText = "Buscar";
-            txtBuscar.Size = new Size(837, 23);
+            txtBuscar.Size = new Size(1196, 31);
             txtBuscar.TabIndex = 2;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             txtBuscar.KeyPress += txtBuscar_KeyPress;
             // 
             // btnAlta
             // 
-            btnAlta.Location = new Point(3, 47);
+            btnAlta.Location = new Point(4, 78);
+            btnAlta.Margin = new Padding(4, 5, 4, 5);
             btnAlta.Name = "btnAlta";
-            btnAlta.Size = new Size(99, 38);
+            btnAlta.Size = new Size(141, 63);
             btnAlta.TabIndex = 0;
             btnAlta.Text = "Alta";
             btnAlta.UseVisualStyleBackColor = true;
@@ -152,15 +171,17 @@
             flowLayoutPanel1.Controls.Add(chkVerAnulados);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(4, 5, 4, 5);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(108, 488);
+            flowLayoutPanel1.Size = new Size(154, 813);
             flowLayoutPanel1.TabIndex = 3;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(3, 3);
+            btnBuscar.Location = new Point(4, 5);
+            btnBuscar.Margin = new Padding(4, 5, 4, 5);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(99, 38);
+            btnBuscar.Size = new Size(141, 63);
             btnBuscar.TabIndex = 5;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -168,9 +189,10 @@
             // 
             // btnConsultar
             // 
-            btnConsultar.Location = new Point(3, 91);
+            btnConsultar.Location = new Point(4, 151);
+            btnConsultar.Margin = new Padding(4, 5, 4, 5);
             btnConsultar.Name = "btnConsultar";
-            btnConsultar.Size = new Size(99, 38);
+            btnConsultar.Size = new Size(141, 63);
             btnConsultar.TabIndex = 3;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
@@ -178,9 +200,10 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(3, 135);
+            btnModificar.Location = new Point(4, 224);
+            btnModificar.Margin = new Padding(4, 5, 4, 5);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(99, 38);
+            btnModificar.Size = new Size(141, 63);
             btnModificar.TabIndex = 1;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
@@ -188,9 +211,10 @@
             // 
             // btnBaja
             // 
-            btnBaja.Location = new Point(3, 179);
+            btnBaja.Location = new Point(4, 297);
+            btnBaja.Margin = new Padding(4, 5, 4, 5);
             btnBaja.Name = "btnBaja";
-            btnBaja.Size = new Size(99, 38);
+            btnBaja.Size = new Size(141, 63);
             btnBaja.TabIndex = 2;
             btnBaja.Text = "Baja";
             btnBaja.UseVisualStyleBackColor = true;
@@ -198,57 +222,63 @@
             // 
             // btnCerrar
             // 
-            btnCerrar.Location = new Point(3, 223);
+            btnCerrar.Location = new Point(4, 370);
+            btnCerrar.Margin = new Padding(4, 5, 4, 5);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(99, 38);
+            btnCerrar.Size = new Size(141, 63);
             btnCerrar.TabIndex = 4;
             btnCerrar.Text = "Salir";
             btnCerrar.UseVisualStyleBackColor = true;
             btnCerrar.Click += btnCerrar_Click;
-            //
+            // 
             // btnBorrarAnulados
-            //
-            btnBorrarAnulados.Location = new Point(3, 267);
+            // 
+            btnBorrarAnulados.Location = new Point(4, 443);
+            btnBorrarAnulados.Margin = new Padding(4, 5, 4, 5);
             btnBorrarAnulados.Name = "btnBorrarAnulados";
-            btnBorrarAnulados.Size = new Size(99, 38);
+            btnBorrarAnulados.Size = new Size(141, 63);
             btnBorrarAnulados.TabIndex = 6;
             btnBorrarAnulados.Text = "Borrar anulados";
             btnBorrarAnulados.UseVisualStyleBackColor = true;
             btnBorrarAnulados.Click += btnBorrarAnulados_Click;
-            //
+            // 
             // chkVerAnulados
-            //
+            // 
             chkVerAnulados.AutoSize = true;
-            chkVerAnulados.Location = new Point(3, 311);
+            chkVerAnulados.Location = new Point(4, 516);
+            chkVerAnulados.Margin = new Padding(4, 5, 4, 5);
             chkVerAnulados.Name = "chkVerAnulados";
-            chkVerAnulados.Size = new Size(96, 19);
+            chkVerAnulados.Size = new Size(140, 29);
             chkVerAnulados.TabIndex = 7;
             chkVerAnulados.Text = "Ver anulados";
             chkVerAnulados.UseVisualStyleBackColor = true;
             chkVerAnulados.CheckedChanged += chkVerAnulados_CheckedChanged;
-            //
+            // 
             // panel1
-            //
+            // 
             panel1.Controls.Add(txtBuscar);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(108, 0);
+            panel1.Location = new Point(154, 0);
+            panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(837, 28);
+            panel1.Size = new Size(1196, 47);
             panel1.TabIndex = 4;
             // 
             // FrmAdminEmpleados
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 488);
+            ClientSize = new Size(1350, 813);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FrmAdminEmpleados";
             Text = "Administración de empleados";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)empleadoBindingSource).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

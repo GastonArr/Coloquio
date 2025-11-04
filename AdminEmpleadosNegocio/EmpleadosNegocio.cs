@@ -10,12 +10,12 @@ namespace AdminEmpleadosNegocio
             return EmpleadosDatosEF.Get(e);
         }
 
-        public static int DeleteAnulados()
+        public static int DeleteAnulados() // -codig agre-//
         {
             try
             {
-                //delegamos la eliminacion definitiva a la capa de datos y devolvemos la cantidad borrada
-                return EmpleadosDatosEF.DeleteAnulados();
+                //delegamos la eliminacion definitiva a la capa de datos y devolvemos la cantidad borrada // -codig agre-//
+                return EmpleadosDatosEF.DeleteAnulados(); // -codig agre-//
             }
             catch (Exception)
             {

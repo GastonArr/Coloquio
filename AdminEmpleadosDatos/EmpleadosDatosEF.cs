@@ -24,8 +24,8 @@ namespace AdminEmpleadosDatos
             if (String.IsNullOrWhiteSpace(e.Nombre) && String.IsNullOrWhiteSpace(e.Dni))
             {
                 list = empleadosContext.empleado.Include("Departamento")
-                    //filtra segun el valor del parametro anulado enviado desde la capa de presentacion
-                    .Where(emp => emp.anulado == e.anulado)
+                    //filtra segun el valor del parametro anulado enviado desde la capa de presentacion // -codig agre-//
+                    .Where(emp => emp.anulado == e.anulado) // -codig agre-//
                     .ToList();
             }
             else
@@ -47,8 +47,8 @@ namespace AdminEmpleadosDatos
                     ||
                     (i.Dni != null ? i.Dni.Contains(e.Dni ?? "") : true)
                     )
-                    //aplico nuevamente el filtro por anulados cuando el usuario esta buscando por nombre o dni
-                    .Where(emp => emp.anulado == e.anulado)
+                    //aplico nuevamente el filtro por anulados cuando el usuario esta buscando por nombre o dni // -codig agre-//
+                    .Where(emp => emp.anulado == e.anulado) // -codig agre-//
                     .ToList();
             }
 
@@ -66,7 +66,7 @@ namespace AdminEmpleadosDatos
             }
             //seteo el ID en null para que realice el insert porque si tiene otro valor EF lo toma como un update
             e.EmpleadoId = null;
-            e.anulado = false;
+            e.anulado = false; // -codig agre-//
             empleadosContext.Add(e);
             empleadosContext.SaveChanges();
             if (e.EmpleadoId == null)
@@ -112,35 +112,35 @@ namespace AdminEmpleadosDatos
             return true;
         }
 
-        public static int DeleteAnulados()
+        public static int DeleteAnulados() // -codig agre-//
         {
             empleadosContext = new AdminEmpleadosDBContext();
 
             if (empleadosContext.empleado == null)
             {
-                //devuelvo cero porque no hay tabla para consultar (por ejemplo en una BD sin migraciones)
+                //devuelvo cero porque no hay tabla para consultar (por ejemplo en una BD sin migraciones) // -codig agre-//
                 return 0;
             }
 
-            //busco todos los empleados marcados como anulados y los guardo en la lista solicitada
+            //busco todos los empleados marcados como anulados y los guardo en la lista solicitada // -codig agre-//
             List<Empleado> listaParaDeletear = empleadosContext.empleado
-                .Where(emp => emp.anulado)
-                .ToList();
+                .Where(emp => emp.anulado) // -codig agre-//
+                .ToList(); // -codig agre-//
 
             if (listaParaDeletear.Count == 0)
             {
-                //si la lista esta vacia no hay nada para borrar, retorno cero
+                //si la lista esta vacia no hay nada para borrar, retorno cero // -codig agre-//
                 return 0;
             }
 
-            //elimino todos los empleados anulados usando RemoveRange como pidio el requerimiento
-            empleadosContext.empleado.RemoveRange(listaParaDeletear);
+            //elimino todos los empleados anulados usando RemoveRange como pidio el requerimiento // -codig agre-//
+            empleadosContext.empleado.RemoveRange(listaParaDeletear); // -codig agre-//
 
-            //persisto los cambios en la base de datos
-            empleadosContext.SaveChanges();
+            //persisto los cambios en la base de datos // -codig agre-//
+            empleadosContext.SaveChanges(); // -codig agre-//
 
-            //retorno la cantidad de registros eliminados para informar al usuario
-            return listaParaDeletear.Count;
+            //retorno la cantidad de registros eliminados para informar al usuario // -codig agre-//
+            return listaParaDeletear.Count; // -codig agre-//
         }
     }
 }

@@ -46,8 +46,8 @@
             btnModificar = new Button();
             btnBaja = new Button();
             btnCerrar = new Button();
-            btnBorrarAnulados = new Button();
-            chkVerAnulados = new CheckBox();
+            btnBorrarAnulados = new Button(); // -codig agre-//
+            chkVerAnulados = new CheckBox(); // -codig agre-//
             panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)empleadoBindingSource).BeginInit();
@@ -148,8 +148,8 @@
             flowLayoutPanel1.Controls.Add(btnModificar);
             flowLayoutPanel1.Controls.Add(btnBaja);
             flowLayoutPanel1.Controls.Add(btnCerrar);
-            flowLayoutPanel1.Controls.Add(btnBorrarAnulados);
-            flowLayoutPanel1.Controls.Add(chkVerAnulados);
+            flowLayoutPanel1.Controls.Add(btnBorrarAnulados); // -codig agre-//
+            flowLayoutPanel1.Controls.Add(chkVerAnulados); // -codig agre-//
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -214,7 +214,7 @@
             btnBorrarAnulados.TabIndex = 6;
             btnBorrarAnulados.Text = "Borrar anulados";
             btnBorrarAnulados.UseVisualStyleBackColor = true;
-            btnBorrarAnulados.Click += btnBorrarAnulados_Click;
+            btnBorrarAnulados.Click += btnBorrarAnulados_Click; // -codig agre-//
             //
             // chkVerAnulados
             //
@@ -225,7 +225,7 @@
             chkVerAnulados.TabIndex = 7;
             chkVerAnulados.Text = "Ver anulados";
             chkVerAnulados.UseVisualStyleBackColor = true;
-            chkVerAnulados.CheckedChanged += chkVerAnulados_CheckedChanged;
+            chkVerAnulados.CheckedChanged += chkVerAnulados_CheckedChanged; // -codig agre-//
             //
             // panel1
             //
@@ -266,8 +266,8 @@
         private Button btnCerrar;
         private Panel panel1;
         private Button btnBuscar;
-        private Button btnBorrarAnulados;
-        private CheckBox chkVerAnulados;
+        private Button btnBorrarAnulados; // -codig agre-//
+        private CheckBox chkVerAnulados; // -codig agre-//
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn Dni;
         private DataGridViewTextBoxColumn Nombre;

@@ -56,7 +56,7 @@ namespace AdminEmpleadosFront
                 emp.FechaIngreso = txtIngreso.Value;
                 emp.Departamento = null;
                 emp.Nombre = txtNombre.Text.Trim();
-                emp.anulado = false;
+                emp.anulado = false; // false es 0 en la BD y todos vienen false y cuando anulo es true que es 1 en la BD
 
                 //tomo el ID del departamento, el cual esta en el combo
                 emp.dpto_id = (int)cmbDepartamento.SelectedValue;

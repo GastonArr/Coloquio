@@ -31,8 +31,8 @@ namespace AdminEmpleadosFront
                 parametro.Dni = textoBuscar;
             }
 
-            //seteo el nuevo filtro de anulados usando el valor del checkbox
-            parametro.anulado = chkVerAnulados.Checked;
+            //seteo el nuevo filtro de anulados usando el valor del checkbox // -codig agre-//
+            parametro.anulado = chkVerAnulados.Checked; // -codig agre-//
 
             //Busco la lista de empleados en la capa de negocio, pasandole el parametro ingresado
             empleadosList = EmpleadosNegocio.Get(parametro);
@@ -132,44 +132,44 @@ namespace AdminEmpleadosFront
 
         private void chkVerAnulados_CheckedChanged(object sender, EventArgs e)
         {
-            //cada vez que el usuario tilda o destilda el check actualizo la grilla para respetar el filtro
-            buscarEmpleados();
+            //cada vez que el usuario tilda o destilda el check actualizo la grilla para respetar el filtro // -codig agre-//
+            buscarEmpleados(); // -codig agre-//
         }
 
         private void btnBorrarAnulados_Click(object sender, EventArgs e)
         {
-            //primer mensaje de advertencia para evitar borrar registros por error
-            DialogResult confirmarPrimeraVez = MessageBox.Show("¿Desea quitar de la BD todos los empleados anulados?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //primer mensaje de advertencia para evitar borrar registros por error // -codig agre-//
+            DialogResult confirmarPrimeraVez = MessageBox.Show("¿Desea quitar de la BD todos los empleados anulados?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // -codig agre-//
             if (confirmarPrimeraVez != DialogResult.Yes)
             {
-                //si la respuesta es No salgo del metodo
-                return;
+                //si la respuesta es No salgo del metodo // -codig agre-//
+                return; // -codig agre-//
             }
 
-            //segundo mensaje de confirmacion definitiva como pide el requerimiento
-            DialogResult confirmarSegundaVez = MessageBox.Show("¿Confirma que va a borrar definitivamente de la BD los empleados anulados?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //segundo mensaje de confirmacion definitiva como pide el requerimiento // -codig agre-//
+            DialogResult confirmarSegundaVez = MessageBox.Show("¿Confirma que va a borrar definitivamente de la BD los empleados anulados?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // -codig agre-//
             if (confirmarSegundaVez != DialogResult.Yes)
             {
-                //si la respuesta es No salgo del metodo
-                return;
+                //si la respuesta es No salgo del metodo // -codig agre-//
+                return; // -codig agre-//
             }
 
             try
             {
-                //ejecuto la eliminacion definitiva y guardo cuantos empleados fueron borrados
-                int cantidadEliminados = EmpleadosNegocio.DeleteAnulados();
+                //ejecuto la eliminacion definitiva y guardo cuantos empleados fueron borrados // -codig agre-//
+                int cantidadEliminados = EmpleadosNegocio.DeleteAnulados(); // -codig agre-//
 
-                //informo el resultado al usuario mostrando la cantidad que salio de la capa de datos
-                MessageBox.Show($"Se borraron definitivamente {cantidadEliminados} empleados anulados.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //informo el resultado al usuario mostrando la cantidad que salio de la capa de datos // -codig agre-//
+                MessageBox.Show($"Se borraron definitivamente {cantidadEliminados} empleados anulados.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information); // -codig agre-//
             }
             catch (Exception ex)
             {
-                //muestro cualquier error inesperado
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //muestro cualquier error inesperado // -codig agre-//
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // -codig agre-//
             }
 
-            //refresco la grilla para que desaparezcan los empleados eliminados
-            buscarEmpleados();
+            //refresco la grilla para que desaparezcan los empleados eliminados // -codig agre-//
+            buscarEmpleados(); // -codig agre-//
         }
 
 
